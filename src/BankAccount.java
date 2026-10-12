@@ -7,7 +7,7 @@ public class BankAccount {
         this.owner = owner;
         count++;
     }
-    boolean isValidAmount(double amount){
+    static boolean isValidAmount(double amount){
         if(amount > 0){
             return true;
         }else{
