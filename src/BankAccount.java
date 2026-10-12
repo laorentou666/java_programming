@@ -1,16 +1,30 @@
 public class BankAccount {
     String owner;
     double balance;
+    static int count;
     BankAccount(String owner,double balance){
         this.balance = balance;
         this.owner = owner;
+        count++;
+    }
+    boolean isValidAmount(double amount){
+        if(amount > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
     void transfer(BankAccount target,double amount) {
-        if (this.balance >= amount && amount >= 0) {
-            target.balance = target.balance + amount;
-            this.balance = this.balance - amount;
-            System.out.printf("转账成功，%s余额：%.2f,%s余额：%.2f\n",this.owner,this.balance,target.owner,target.balance);
-        } else {
+        if (this.balance >= amount) {
+            if(isValidAmount(amount)){
+                target.balance = target.balance + amount;
+                this.balance = this.balance - amount;
+                System.out.printf("转账成功，%s余额：%.2f,%s余额：%.2f\n",this.owner,this.balance,target.owner,target.balance);
+            }else {
+                System.out.println("金额无效");
+            }
+
+        }else{
             System.out.println("余额不足");
         }
     }
@@ -23,6 +37,7 @@ public class BankAccount {
         BankAccount b = new BankAccount("b",20);
         System.out.printf("%s余额：%.2f,%s余额：%.2f\n",a.owner,a.balance,b.owner,b.balance);
         a.transfer(b,5);
-        a.transfer(b,999);
+        a.transfer(b,-999);
+        System.out.printf("开户数量：%d",count);
     }
 }
