@@ -1,7 +1,9 @@
+package app;
+
 public class Counter {
     private int count = 0;
     private int limit; //private通过getter查询，构造方法赋值
-    Counter(int limit){
+    public Counter(int limit){
         this.limit = limit;
     }
     public int getLimit() {
