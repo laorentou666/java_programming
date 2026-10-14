@@ -1,18 +1,17 @@
-package app;
+package bank;
 
 public class BankAccount {
     private String owner;
     private double balance;
-    private static int count;
+    private static int count;//统一小数
     public BankAccount(String owner,double balance){
         if(isValidAmount(balance) || balance == 0){
             this.balance = balance;
             this.owner = owner;
             count++;
         }else{
-            System.out.println("余额无效");
+            throw new RuntimeException("余额无效拒绝创建");
         }
-
     }
     private static boolean isValidAmount(double amount){
         if(amount > 0){
