@@ -22,8 +22,20 @@ class Main{
         System.out.println("B余额" + b.getBalance());
         SavingsAccount s = new SavingsAccount("d",100,0.03);
         s.transfer(b,50);
-        s.transfer(a,2000);
+        s.transfer(a,1001);
         s.addInterest();
         System.out.println(s.getBalance());
+        BankAccount[] list = {
+                new BankAccount("甲", 5000),
+                new SavingsAccount("乙", 5000, 0.03)
+        };
+        for(BankAccount x: list){
+            x.transfer(b,1500);
+            if(x instanceof  SavingsAccount){ //如果x是SavingsAccount类的
+                SavingsAccount t = (SavingsAccount) x; //向下转型
+                t.addInterest();
+            }
+        }
+
     }
 }
